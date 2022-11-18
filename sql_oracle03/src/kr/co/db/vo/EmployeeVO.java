@@ -5,8 +5,8 @@ import java.util.Objects;
 
 /**
  * VO 객체
- * 	VALUE Object로써 데이터로써 데이터 베이스 테이블의 Record 값을 저장하기 위한 용도로 사용한다.
- * 	(데이터 저장용 객체이다.) 
+ *    Value Object 로써 데이터 베이스 테이블의 Record 값을 저장 하기 위한
+ *    용도로 사용한다.(데이터 저장용 객체이다.)
  * @author user1
  *
  */

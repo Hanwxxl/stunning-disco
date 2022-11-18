@@ -52,18 +52,16 @@ public class Demo {
 		
 		
 		// ResultSet에서 값 추출
-		SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일");
-		
-		System.out.println("| ID  |   FIRST NAME    |    LAST_NAME    |    HIRE_DATE    |");
-		System.out.println("+-----+-----------------+-----------------+-----------------+");
+
+		System.out.println("| ID  | FIRST_NAME      | LAST_NAME       | HIRE_DATE  |");
+		System.out.println("+-----+-----------------+-----------------+------------+");
 		while(rs.next()) {
 			int id = rs.getInt("EMPLOYEE_ID");
 			String fName = rs.getString("FIRST_NAME");
 			String lName = rs.getString("LAST_NAME");
 			Date hireDate = rs.getDate("HIRE_DATE");
 			
-			
-			System.out.printf("| %d | %15s | %15s |  %s |\n", id, fName, lName, df.format(hireDate));
+			System.out.printf("| %d | %15s | %15s | %s | \n", id, fName, lName, hireDate);
 		}
 		
 		// Database 관련 연결 정보 Close

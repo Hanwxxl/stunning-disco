@@ -14,6 +14,7 @@ SELECT D.DEPARTMENT_ID
     ON D.LOCATION_ID = L.LOCATION_ID
  ORDER BY 1;
 
+
 /*
  * 지역별로 몇개의 부서가 배치되었는지 알아보세요.
  */
@@ -32,6 +33,7 @@ SELECT COUNT(*) AS 부서수
      , L.CITY
      , L.STATE_PROVINCE;
 
+    
 /*
  * 지역별 사원수가 얼마나 되는지 알아보세요.
  */

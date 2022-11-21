@@ -91,12 +91,14 @@ SELECT E.EMPLOYEE_ID
 	FROM EMPLOYEES E
 	FULL OUTER JOIN DEPARTMENTS D 
 	  ON E.DEPARTMENT_ID = D.DEPARTMENT_ID;
+	 
 /*
 * CROSS JOIN
 * 	- 카데시안 곱(Cartesian Product)이라고도 한다.
 * 	- JOIN하는 모든 테이블의 행들이 맵핑된 데이터의 결과로 반환한다.
 * 	- A 테이블 10행, B 테이블 5행 -> A*B = 50행
 */
+	 
 SELECT COUNT(*) FROM EMPLOYEES;
 
 SELECT *

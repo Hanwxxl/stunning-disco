@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import = "java.util.List, model.dto.BookmarkDTO" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>즐겨찾기</h2>
+	<form action="./bookmark" method="post">
+		<div>
+			<label>URL 주소:</label><input type="text" name="url">
+		</div>
+		<div>
+			<label>별칭:</label><input type="text" name="name">
+		</div>
+		<div>
+			<button type="submit">등록</button>
+		</div>
+	</form>
+	<ul>
+		<% for(BookmarkDTO d: (List<BookmarkDTO>)request.getAttribute("data")) { %>
+			<li><a href="<%=d.getUrl() %>"> <%=d.getName() %></a></li>
+		<% } %>
+	</ul>
+</body>
+</html>

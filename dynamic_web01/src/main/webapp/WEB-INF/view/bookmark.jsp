@@ -23,6 +23,7 @@
 		<div>
 			<label>별칭:</label><input type="text" name="name">
 		</div>
+		
 		<div>
 			<button type="submit">등록</button>
 		</div>

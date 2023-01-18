@@ -19,14 +19,25 @@
 	<form action="${loginUrl }" method="post">
 		<div>
 			<label>아이디</label>
-			<input type="text" name="userId">
+			<input type="text" name="userId" value="${cookie.remember.value }">
 			<c:if test="${not empty requestScope.error }">
-				<span style="color:red;">${requestScope.error }</span>
+				<span style="color: red;">${requestScope.error }</span>
 			</c:if>
 		</div>
 		<div>
 			<label>패스워드</label>
 			<input type="password" name="password">
+		</div>
+		<div>
+			<label for="id_remember">아이디 기억하기</label>
+			<c:choose>
+				<c:when test="${empty cookie.remember }">
+					<input type="checkbox" id="id_remember" name="remember">
+				</c:when>
+				<c:otherwise>
+					<input type="checkbox" id="id_remember" name="remember" checked>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div>
 			<button type="submit">로그인</button>

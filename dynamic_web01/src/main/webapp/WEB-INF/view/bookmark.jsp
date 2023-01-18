@@ -11,7 +11,7 @@
 <c:url var="staticUrl" value="/static" />
 <link type="text/css" rel="stylesheet" href="${staticUrl }/bs5/css/bootstrap.min.css">
 <script type="text/javascript" src="${staticUrl }/bs5/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div>
@@ -27,7 +27,6 @@
 		<div>
 			<label>별칭:</label><input type="text" name="name">
 		</div>
-		
 		<div>
 			<button type="submit">등록</button>
 		</div>
@@ -36,16 +35,16 @@
 		<c:forEach var="d" items="${requestScope.data }">
 			<c:url var="bookmarkUpdateUrl" value="/bookmark/update">
 				<c:param name="id" value="${d.id }" />
-		</c:url>
+			</c:url>
 			<li>
 				<a href="${d.url }">${d.name }</a>
 				<button type="button" onclick="location.href='${bookmarkUpdateUrl }'">수정</button>
 				<button type="submit" form="deleteForm${d.id }">삭제</button>
 				<form id="deleteForm${d.id }" action="${bookmarkUrl }/delete" method="post">
 					<input type="hidden" name="id" value="${d.id }">
-		
+				</form>
 			</li>
-			</c:forEach>
+		</c:forEach>
 	</ul>
 </body>
 </html>

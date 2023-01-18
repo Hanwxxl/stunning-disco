@@ -8,7 +8,7 @@ import database.connect.OracleConnection;
 import model.dto.VisitDTO;
 
 public class VisitDAO {
-
+	
 	/*
 	 * 마이바티스 관련 라이브러리 필요
 	 *     1. ojdbc
@@ -30,9 +30,8 @@ public class VisitDAO {
 	}
 	
 	public List<VisitDTO> selectNickname(VisitDTO data) {
-		List<VisitDTO> dataList = session.selectList("visitMapper.selectNickname",data);
+		List<VisitDTO> dataList = session.selectList("visitMapper.selectUserId", data);
 		return dataList;
 	}
-	
 
 }

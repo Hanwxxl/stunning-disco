@@ -7,31 +7,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>방명록</title>
+<title>홈</title>
 <c:url var="staticUrl" value="/static" />
 <link type="text/css" rel="stylesheet" href="${staticUrl }/bs5/css/bootstrap.min.css">
 <script type="text/javascript" src="${staticUrl }/bs5/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 </head>
 <body>
-	<c:url var="mainUrl" value="/" />
-	<a href="${mainUrl }">메인</a>
-	<h2>방명록</h2>
-	<c:url var="visitUrl" value="/visit" />
-	<form action="${visitUrl }" method="post">
-		<div>
-			<textarea rows="3" cols="25" name="context"></textarea>
-		</div>
-		<div>
-			<button type="submit">등록</button>
-		</div>
-	</form>
-
-	<ul>
-		<c:forEach var="data" items="${requestScope.dataList }">		
-			<fmt:formatDate type="both" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" var="date" value="${data.createDate }"/>
-			<li>${data.userId } | ${data.context } | ${date }</li>
-		</c:forEach>
-	</ul>
+	<c:url var="mainUrl" value="" />
+	<h1>Welcome First Web Servlet</h1>
+	<a href="${mainUrl}visit">방명록</a>
+	
+	<c:choose>
+		<c:when test="${sessionScope.login }">
+			<a href="${mainUrl}bookmark">즐겨찾기</a>
+			<a href="${mainUrl}logout">로그아웃</a>
+			<a href="${mainUrl}myinfo">개인정보</a>
+		</c:when>
+		<c:otherwise>
+			<a href="${mainUrl}login">로그인</a>
+			<a href="${mainUrl}join">회원가입</a>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

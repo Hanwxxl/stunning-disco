@@ -7,31 +7,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>방명록</title>
+<title>개인정보</title>
 <c:url var="staticUrl" value="/static" />
 <link type="text/css" rel="stylesheet" href="${staticUrl }/bs5/css/bootstrap.min.css">
 <script type="text/javascript" src="${staticUrl }/bs5/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 </head>
 <body>
-	<c:url var="mainUrl" value="/" />
-	<a href="${mainUrl }">메인</a>
-	<h2>방명록</h2>
-	<c:url var="visitUrl" value="/visit" />
-	<form action="${visitUrl }" method="post">
+	<h1>개인정보 수정</h1>
+	<c:url var="myinfoUpdateUrl" value="/myinfo" />
+	<form action="${myinfo }" method="post">
 		<div>
-			<textarea rows="3" cols="25" name="context"></textarea>
+			<label>아이디</label>
+			<input type="text" value="${sessionScope.user.userId }" disabled>
 		</div>
 		<div>
-			<button type="submit">등록</button>
+			<label>현재 패스워드</label>
+			<input type="password" name="password">
+		</div>
+		<div>
+			<label>변경할 패스워드</label>
+			<input type="password" name="changePass">
+		</div>
+		<div>
+			<label>이메일 주소</label>
+			<input type="email" name="email" value="${sessionScope.user.email } ">
+		</div>
+		<div>
+			<button type="submit">저장</button>
 		</div>
 	</form>
-
-	<ul>
-		<c:forEach var="data" items="${requestScope.dataList }">		
-			<fmt:formatDate type="both" pattern="yyyy년 MM월 dd일 HH시 mm분 ss초" var="date" value="${data.createDate }"/>
-			<li>${data.userId } | ${data.context } | ${date }</li>
-		</c:forEach>
-	</ul>
 </body>
 </html>

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Random" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%!
     public Random rd = new Random();
     public String title = "메인페이지";
+
     public String getTitle() {
 	    return this.title;
     }
@@ -28,5 +32,9 @@
 	    <li><%=i %>번재 목록</li>
 	<% } %>
 	</ul>
+	${sessionScope.login }<br>
+	${sessionScope.user.userId }<br>
+	${sessionScope.user.email }<br>
+	${sessionScope.user.password }<br>
 </body>
 </html>

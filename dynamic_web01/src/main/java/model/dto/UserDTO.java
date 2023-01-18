@@ -5,6 +5,9 @@ public class UserDTO {
 	private String userId;
 	private String password;
 	private String email;
+	
+	
+
 
 	public String getUserId() {
 		return userId;

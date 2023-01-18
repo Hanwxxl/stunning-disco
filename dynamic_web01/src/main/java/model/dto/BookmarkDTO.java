@@ -3,10 +3,17 @@ package model.dto;
 public class BookmarkDTO {
 		
 		private int id;
+		private String userId;
 		private String url;
 		private String name;
 		
 		
+		public String getUserId() {
+			return userId;
+		}
+		public void setUserId(String userId) {
+			this.userId = userId;
+		}
 		public int getId() {
 			return id;
 		}
@@ -28,6 +35,6 @@ public class BookmarkDTO {
 		}
 		@Override
 		public String toString() {
-			return "BookmarkDTO [id=" + id + ", url=" + url + ", name=" + name + "]";
+			return "BookmarkDTO [id=" + id + ", userId=" + userId + ", url=" + url + ", name=" + name + "]";
 		}
 }

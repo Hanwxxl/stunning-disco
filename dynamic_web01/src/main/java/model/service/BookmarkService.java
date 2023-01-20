@@ -1,6 +1,8 @@
 package model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import model.dao.BookmarkDAO;
 import model.dto.BookmarkDTO;
@@ -10,6 +12,17 @@ public class BookmarkService {
 	public List<BookmarkDTO> getAll(BookmarkDTO dto) {
 		BookmarkDAO dao = new BookmarkDAO();
 		List<BookmarkDTO> data = dao.selectAll(dto);
+		dao.close();
+		return data;
+	}
+	
+	public List<BookmarkDTO> getPage(BookmarkDTO dto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", 2);
+		map.put("end", 3);
+		map.put("userId", dto.getUserId());
+		BookmarkDAO dao = new BookmarkDAO();
+		List<BookmarkDTO> data = dao.selectPage(map);
 		dao.close();
 		return data;
 	}

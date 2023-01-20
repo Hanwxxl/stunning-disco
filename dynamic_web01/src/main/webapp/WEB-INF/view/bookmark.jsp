@@ -8,16 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>즐겨찾기</title>
-<c:url var="staticUrl" value="/static" />
-<link type="text/css" rel="stylesheet" href="${staticUrl }/bs5/css/bootstrap.min.css">
-<script type="text/javascript" src="${staticUrl }/bs5/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<%@ include file="./module/css_js_import.jsp" %>
 </head>
 <body>
-	<div>
-		<c:url var="mainUrl" value="/" />
-		<a href="${mainUrl }">메인으로</a>
-	</div>
+	<%@ include file="./module/top_nav.jsp" %>
 	<h2>즐겨찾기</h2>
 	<c:url var="bookmarkUrl" value="/bookmark" />
 	<form action="${bookmarkUrl }" method="post">

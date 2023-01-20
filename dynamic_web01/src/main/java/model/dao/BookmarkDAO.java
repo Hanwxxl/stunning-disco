@@ -1,10 +1,12 @@
 package model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import database.connect.OracleConnection;
+import jakarta.websocket.Session;
 import model.dto.BookmarkDTO;
 
 public class BookmarkDAO {
@@ -27,6 +29,11 @@ public class BookmarkDAO {
 	
 	public List<BookmarkDTO> selectAll(BookmarkDTO dto) {
 		List<BookmarkDTO> data = session.selectList("bookmarkMapper.selectAll", dto);
+		return data;
+	}
+	
+	public List<BookmarkDTO> selectPage(Map<String, Object> map) {
+		List<BookmarkDTO> data = session.selectList("bookmarkMapper.selectPage", map);
 		return data;
 	}
 

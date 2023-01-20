@@ -2,6 +2,26 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>dynamic_web01</display-name>
   
+  <filter>
+  	<filter-name>loggingFilter</filter-name>
+  	<filter-class>filter.LoggingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>loggingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<filter-class>filter.LoginCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<url-pattern>/bookmark</url-pattern>
+  	<url-pattern>/bookmark/*</url-pattern>
+  	<url-pattern>/myinfo</url-pattern>
+  </filter-mapping>
+
   <servlet>
   	<servlet-name>mainServlet</servlet-name>
   	<servlet-class>controller.MainController</servlet-class>
@@ -91,6 +111,16 @@
   	<servlet-name>myinfoServlet</servlet-name>
   	<url-pattern>/myinfo</url-pattern>
   </servlet-mapping>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/WEB-INF/view/error/404.jsp</location>
+  </error-page>
+  
+    <error-page>
+  	<error-code>500</error-code>
+  	<location>/WEB-INF/view/error/500.jsp</location>
+  </error-page>
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

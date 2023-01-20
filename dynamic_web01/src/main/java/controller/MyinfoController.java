@@ -14,11 +14,7 @@ public class MyinfoController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		if(session.getAttribute("login") == null) {
-			resp.sendRedirect(req.getContextPath() + "/login");  //로그인 안 하고 '개인정보' 들어가면 '로그인'페이지로 이동
-			return;
-		}
+	
 		req.getRequestDispatcher("/WEB-INF/view/myinfo.jsp").forward(req, resp);
 	}
 	

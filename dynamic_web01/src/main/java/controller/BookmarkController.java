@@ -19,17 +19,12 @@ public class BookmarkController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
-		if(session.getAttribute("login") == null) {
-			resp.sendRedirect(req.getContextPath() + "/login");
-			return;
-		}
-		
 		UserDTO userData = (UserDTO)session.getAttribute("user");
 		BookmarkDTO dto = new BookmarkDTO();
 		dto.setUserId(userData.getUserId());
 		
 		BookmarkService service = new BookmarkService();
-		List<BookmarkDTO> data = service.getAll(dto);
+		List<BookmarkDTO> data = service.getPage(dto);
 		req.setAttribute("data", data);
 		
 		req.getRequestDispatcher("/WEB-INF/view/bookmark.jsp").forward(req, resp);
@@ -38,11 +33,6 @@ public class BookmarkController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-
-		if(session.getAttribute("login") == null) {
-			resp.sendRedirect(req.getContextPath() + "/login");
-			return;
-		}
 
 		UserDTO userData = (UserDTO)session.getAttribute("user");
 

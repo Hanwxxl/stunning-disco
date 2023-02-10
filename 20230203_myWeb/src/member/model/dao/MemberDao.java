@@ -5,10 +5,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import first.common.JDBCTemplate;
+import member.model.vo.MemberVo;
 
 public class MemberDao {
+	
+	public List<MemberVo> selectMemberList(Connection conn){
+		List<MemberVo> result = null;
+		
+		String query = "select * from test_member";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		try {
+			pstmt = conn. 
+		}catch (Exception e){
+			e.printStackTrace();			
+		}finally {
+			
+		}
+		
+		return result;
+	}
+	
+	
+	
 
 	public int login(Connection conn, String id, String pw) {
 		int result = -1;

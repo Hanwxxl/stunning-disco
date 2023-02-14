@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import first.common.JDBCTemplate;
@@ -20,11 +21,28 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		try {
-			pstmt = conn. 
-		}catch (Exception e){
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+		if(rset.next()) {
+			result = new ArrayList<MemberVo>();
+			do {
+				String id = rset.getString("id");
+				String passwd = rset.getString("passwd");
+				String name = rset.getString("name");
+				String email = rset.getString("email");
+				MemberVo vo = new MemberVo();
+				vo.setEmail(email);
+				vo.setId(id);
+				vo.setName(name);
+				vo.setPasswd(passwd);
+				result.add(vo);
+			}while(rset.next());	
+		}
+		} catch (Exception e){
 			e.printStackTrace();			
-		}finally {
-			
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		
 		return result;

@@ -34,7 +34,6 @@ public class EnrollController extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		// 1.전달받은 데이터 읽어 변수에 담기
 		String id = request.getParameter("id");  
 		String passwd = request.getParameter("passwd"); 

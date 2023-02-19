@@ -3,47 +3,40 @@ package member.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-import first.common.JDBCTemplate;
+import first.common.JdbcTemplate;
 import member.model.vo.MemberVo;
 
 public class MemberDao {
 	
 	
-	//로그인
-	public int login(Connection conn, String id, String pw) {
-		int result = -1; 
-		
-		Statement stmt = null;
+	// 로그인
+	public MemberVo login(Connection conn, MemberVo vo) {
+		MemberVo result = null;
+		String sql = "select userID, userPassword from project_t where userID=? and userPassword=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String queryForStatement = "select count(*) cnt from project_T where userID='"+id+"' and userPassword='"+pw+"'"; 
-		String queryForPreParedStatement = "select count(*) cnt from project_T where userID = ? and userPassword = ?";                             // 별칭 꼭 적어주기
-	
-	
+				
 		try {
-
-			pstmt = conn.prepareStatement(queryForPreParedStatement);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getUserID());
+			pstmt.setString(2, vo.getUserPassword());
 			rs = pstmt.executeQuery();
-							
-					
 			if(rs.next()) {
-				rs.getInt("cnt");
-				result = rs.getInt("cnt");
+				result = new MemberVo();
+				result.setUserID(rs.getString("userID"));
+				result.setUserPassword(rs.getString("userPassword"));
 			}
-		
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(pstmt);
-		}
+			JdbcTemplate.close(rs);
+			JdbcTemplate.close(pstmt);
+		}	
+		System.out.println(result);		
 		return result;
 	}
+
 		
 		
 		//회원가입
@@ -64,9 +57,11 @@ public class MemberDao {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				JDBCTemplate.close(pstmt);
+				JdbcTemplate.close(pstmt);
 			}
 			System.out.println("DAO enroll() return: "+ result);
 			return result;
 	}
+
+
 }

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="board.model.vo.BoardVo" %>
+<%@ page import="board.model.dao.BoardDao" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,14 +82,15 @@
     	    	</tr>
     	    	</thead>
     	    	<tbody>
-    	    		<tr>
-    	    			<td>1</td>
-    	    			<td>안녕하세요</td>
-    	    			<td>백한울</td>
-    	    			<td>2022-02-16</td>
-    	    		</tr>
-    	    	</tbody>
-    	    </table>
+				  <c:forEach items="${boards}" var="vo">
+				 	<tr>
+				 		<td>${vo.bbsID}</td>
+				 		<td>${vo.bbsTitle}</td>
+				 		<td>${vo.userID}</td>
+				 		<td>${vo.bbsDate}</td>
+				 	</tr>
+				   </c:forEach>
+				   </tbody>
     	    <a href= "write.jsp" class= "btn btn-primary pull-right">글쓰기</a>
     	</div>
     </div>

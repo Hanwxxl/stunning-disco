@@ -1,5 +1,7 @@
 package board.model.vo;
 
+import java.sql.Date;
+
 public class BoardVo {
 
 //	BBSID        NOT NULL NUMBER(38)     
@@ -12,10 +14,26 @@ public class BoardVo {
 	private int bbsID;
 	private String bbsTitle;
 	private String userID;
-	private String bbsDate;
+	private Date bbsDate;
 	private String bbsContent;
 	private int bbsAvailable;
 	
+	
+	
+	public BoardVo() {
+		super();
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "BoardVo [bbsID=" + bbsID + ", bbsTitle=" + bbsTitle + ", userID=" + userID + ", bbsDate=" + bbsDate
+				+ ", bbsContent=" + bbsContent + ", bbsAvailable=" + bbsAvailable + "]";
+	}
+
+
+
 	public int getBbsID() {
 		return bbsID;
 	}
@@ -40,14 +58,20 @@ public class BoardVo {
 		this.userID = userID;
 	}
 	
-	public String getBbsDate() {
+	
+	
+	public Date getBbsDate() {
 		return bbsDate;
 	}
-	
-	public void setBbsDate(String bbsDate) {
+
+
+
+	public void setBbsDate(Date bbsDate) {
 		this.bbsDate = bbsDate;
 	}
-	
+
+
+
 	public String getBbsContent() {
 		return bbsContent;
 	}

@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import board.model.vo.BoardVo;
+import first.common.JdbcTemplate;
 
 public class BoardDao {
 	
@@ -22,19 +27,40 @@ public class BoardDao {
 		}
 	}
 	
-//	public String getDate() {
-//		String SQL = "SELECT sysdate from dual";
-//		try {
-//			PreparedStatement pstmt = conn.prepareStatement(SQL);
-//			rs = pstmt.executeQuery();
-//			if (rs.next()) {
-//				return rs.getString(1);
-//			}
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		return ""; //DB 오류 
-//	}
+	// 게시글목록 보기
+	public List<BoardVo> getBoardList(Connection conn){
+		List<BoardVo> result = null;
+		String sql = "select bbsID, bbsTitle, userID, bbsDate, bbsContent from BBS ";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			result = new ArrayList<BoardVo>();
+			while(rs.next()) {
+				BoardVo vo = new BoardVo();
+				vo.setBbsID(rs.getInt("bbsID"));
+				vo.setBbsTitle(rs.getString("bbsTitle"));
+				vo.setUserID(rs.getString("userID"));
+				vo.setBbsDate(rs.getDate("bbsDate"));
+				vo.setBbsContent(rs.getString("bbsContent"));
+				result.add(vo);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JdbcTemplate.close(rs);
+			JdbcTemplate.close(pstmt);
+		}
+
+		System.out.println("dao:"+ result);	
+		return result;
+	}
+
+	
+	
+	
 	
 	public int getNext() {
 		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
@@ -50,7 +76,8 @@ public class BoardDao {
 		}
 		return -1; //DB 오류 
 	}
-
+	
+	// 글쓰기
 	public int write(String bbsTitle, String userID, String bbsContent){
 		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, sysdate, ?, ?)";
 		try {

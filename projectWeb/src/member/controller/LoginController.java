@@ -44,13 +44,17 @@ public class LoginController extends HttpServlet {
 		MemberVo result = new MemberService().login(vo);
 		if(result != null) {
 			System.out.println("로그인성공");
+			request.setAttribute("msg", "반갑습니다.");
+			request.getRequestDispatcher("/msgAlert.jsp").forward(request,response);
 			request.getSession().setAttribute("lgnss", result);
 		}else {
 			System.out.println("로그인실패");
+			request.setAttribute("msg", "일치하는 아이디와 패스워드가 없습니다. 다시 확인하시고 로그인해주세요");
+			request.getRequestDispatcher("/msgAlert.jsp").forward(request,response);
 		}
 
 		//3 페이지이동 및 데이터전달
-		response.sendRedirect("./main.jsp");
+//		response.sendRedirect("./main.jsp");
 	}
 	
 }
